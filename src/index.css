@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Brand Colors */
+  --bw-dark-blue: #2d3e50;
+  --bw-turquoise: #38bdf8;
+  --bw-turquoise-soft: rgba(56, 189, 248, 0.1);
+
+  /* Backgrounds */
+  --bw-bg-light: #fafafa;
+  --bw-bg-gradient: radial-gradient(
+    circle at top right,
+    #fafafa 0%,
+    #fafafa 40%,
+    #e6f7ff 100%
+  );
+
+  /* Typography */
+  --bw-text-main: #2d3e50;
+  --bw-text-muted: #64748b;
+  --bw-font-family: "Inter", system-ui, -apple-system, sans-serif;
+
+  /* Spacing & Transitions */
+  --bw-transition: all 0.3s ease;
+  --bw-radius: 100px;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  font-family: var(--bw-font-family);
+  background-color: var(--bw-bg-light);
+  color: var(--bw-text-main);
+  -webkit-font-smoothing: antialiased;
+}
