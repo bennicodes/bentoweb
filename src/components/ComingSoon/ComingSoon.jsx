@@ -9,12 +9,14 @@ const ComingSoon = () => {
         <span>BentoWeb</span>
       </header>
 
-      <main>
+      <main className={styles.main}>
         <div className={styles.badge}>Lanseres snart</div>
+
         <h1 className={styles.title}>
           Nettsider som får bedriften din til å{" "}
           <span className={styles.accent}>skille seg ut</span>
         </h1>
+
         <p className={styles.subtitle}>
           BentoWeb hjelper små og mellomstore bedrifter med moderne nettsider
           som tiltrekker kunder og bygger troverdighet.

@@ -8,6 +8,7 @@
   text-align: center;
   padding: 0 24px;
   position: relative;
+  overflow: hidden;
 }
 
 .header {
@@ -30,6 +31,14 @@
   border-radius: 50%;
 }
 
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Myk innlasting av innholdet */
+  animation: fadeInUp 1s ease-out forwards;
+}
+
 .badge {
   display: inline-block;
   background-color: var(--bw-turquoise-soft);
@@ -41,6 +50,8 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 24px;
+  /* Subtil flyte-animasjon */
+  animation: float 3s ease-in-out infinite;
 }
 
 .title {
@@ -70,4 +81,27 @@
   font-size: 0.85rem;
   color: var(--bw-text-muted);
   opacity: 0.7;
+}
+
+/* --- Animasjoner --- */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
 }
