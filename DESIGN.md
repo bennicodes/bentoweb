@@ -118,6 +118,10 @@ Flat surfaces separated by hairline rules (`--border`) and tone, not shadows. Th
 
 Square: `--radius` is 2px everywhere. Hairline borders, thin brass dashes as list markers, no pills or cards-as-scaffold.
 
+## Logo
+
+Monogram B: Gloock "B" (converted to outlines in `Logo.jsx` → `MONOGRAM_B`, so favicons render it without fonts) in a thin square frame, with a brass corner at top-left. Used with the "BentoWeb" wordmark in the nav/footer; the mark alone is the favicon, app icon and social avatar. Sources: `src/components/Logo/`, `public/favicon.svg`, `scripts/brand/` (`npm run brand` re-renders PNG icons and the share image).
+
 ## Components
 
 - **Portrait** — dark studio frame with two brass backlight lines; shows a lit silhouette marked "Portrett kommer" until `site.founder.photo` is set. `intro` variant plays the "lights on" sequence.

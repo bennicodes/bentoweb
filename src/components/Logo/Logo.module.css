@@ -9,19 +9,26 @@
   flex-shrink: 0;
 }
 
-.lit {
-  fill: var(--color-brass);
-  transition: fill var(--dur-base) var(--ease-out);
-}
-
-.cell {
+.frame {
   fill: none;
   stroke: currentColor;
-  stroke-width: 1.2;
+  stroke-width: 1.3;
 }
 
-.logo:hover .lit {
-  fill: var(--color-brass-hi);
+.glyph {
+  fill: currentColor;
+}
+
+/* The brass corner — the one lit detail, like the site's backlit lines. */
+.corner {
+  fill: none;
+  stroke: var(--color-brass);
+  stroke-width: 2.6;
+  transition: stroke var(--dur-base) var(--ease-out);
+}
+
+.logo:hover .corner {
+  stroke: var(--color-brass-hi);
 }
 
 .word {

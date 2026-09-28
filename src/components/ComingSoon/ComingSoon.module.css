@@ -155,8 +155,8 @@
   filter: drop-shadow(0 0 var(--space-md) var(--color-brass-glow));
 }
 
-/* Thinner outlines when the mark is shown large (the three empty cells). */
-.mark svg rect:not(:first-child) {
+/* Thinner frame when the mark is shown large. */
+.mark svg rect {
   stroke-width: 0.6;
 }
 

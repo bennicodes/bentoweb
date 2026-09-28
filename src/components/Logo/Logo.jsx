@@ -2,14 +2,16 @@ import React from "react";
 import { Link } from "react-router";
 import styles from "./Logo.module.css";
 
-// The mark: a bento box seen from above — four compartments, one lit in brass.
-// Mirrors public/favicon.svg.
-export const LogoMark = ({ size = 24 }) => (
+// Gloock "B", converted to outlines so the mark renders identically everywhere
+// (favicons and app icons can't load web fonts). Mirrors public/favicon.svg.
+export const MONOGRAM_B = "M11.91 18.38L6.63 18.38L6.63 18.20L6.64 18.20Q7.24 18.20 7.62 17.86Q8 17.51 8 16.95L8 7.05Q7.97 6.47 7.61 6.13Q7.24 5.79 6.64 5.79L6.63 5.79L6.63 5.62L11.68 5.62Q13.05 5.62 14.07 5.98Q15.08 6.34 15.64 6.98Q16.20 7.61 16.20 8.48Q16.20 9.47 15.36 10.18Q14.52 10.89 13.16 11.06Q14.41 11.13 15.36 11.57Q16.30 12 16.84 12.73Q17.37 13.46 17.37 14.43Q17.37 15.59 16.70 16.48Q16.03 17.37 14.80 17.87Q13.58 18.38 11.91 18.38M10.62 5.85L10.62 10.95L11.68 10.95Q12.54 10.95 13.08 10.26Q13.61 9.57 13.61 8.41Q13.61 7.24 13.08 6.54Q12.54 5.85 11.68 5.85L10.62 5.85M11.91 18.15Q13.17 18.15 13.91 17.20Q14.65 16.25 14.65 14.63Q14.65 13.09 13.84 12.14Q13.04 11.20 11.68 11.20L10.62 11.20L10.62 16.95Q10.62 18.15 11.91 18.15";
+
+// The mark: a monogram B in a square frame with a brass corner.
+export const LogoMark = ({ size = 26 }) => (
   <svg viewBox="0 0 24 24" width={size} height={size} className={styles.mark} aria-hidden="true" focusable="false">
-    <rect x="1" y="1" width="10" height="10" className={styles.lit} />
-    <rect x="13.6" y="1.6" width="8.8" height="8.8" className={styles.cell} />
-    <rect x="1.6" y="13.6" width="8.8" height="8.8" className={styles.cell} />
-    <rect x="13.6" y="13.6" width="8.8" height="8.8" className={styles.cell} />
+    <rect x="1" y="1" width="22" height="22" className={styles.frame} />
+    <path d={MONOGRAM_B} className={styles.glyph} />
+    <path d="M1.3 7.3V1.3h6" className={styles.corner} />
   </svg>
 );
 
