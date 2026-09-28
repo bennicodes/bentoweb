@@ -1,0 +1,298 @@
+.page {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100svh;
+}
+
+/* ---------- Top bar ---------- */
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  width: 100%;
+  height: var(--nav-height);
+}
+
+.topPhone {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  font-size: var(--text-sm);
+  color: var(--color-text-on-dark-muted);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.topPhone svg {
+  color: var(--color-brass);
+}
+
+.topPhone:hover {
+  color: var(--color-text-on-dark);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  align-items: center;
+  gap: var(--space-2xl);
+  width: 100%;
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+}
+
+.title {
+  margin-bottom: var(--space-lg);
+  font-size: var(--text-display);
+}
+
+.line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.line > span {
+  display: inline-block;
+}
+
+.lede {
+  max-width: 34rem;
+  margin-bottom: var(--space-md);
+  font-size: var(--text-lg);
+  color: var(--color-text-on-dark-muted);
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-xl);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+}
+
+.dot {
+  width: var(--space-2xs);
+  height: var(--space-2xs);
+  border-radius: 50%;
+  background: var(--color-success);
+  box-shadow: 0 0 0 var(--space-3xs) var(--color-success-ring);
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.facts {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md) var(--space-lg);
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-lg);
+  border-top: var(--border) solid var(--color-line-dark);
+  font-size: var(--text-xs);
+  color: var(--color-text-on-dark-muted);
+}
+
+.facts strong {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: var(--weight-regular);
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+  color: var(--color-text-on-dark);
+}
+
+/* ---------- Studio panel: the brand mark lit like the site's portrait ---------- */
+.studio {
+  position: relative;
+  align-self: stretch;
+  min-height: 30rem;
+  overflow: hidden;
+  background:
+    radial-gradient(60% 55% at 70% 40%, var(--color-brass-haze), transparent 70%),
+    linear-gradient(180deg, var(--color-navy), var(--color-night) 92%);
+}
+
+.light {
+  position: absolute;
+  height: var(--border);
+  background: linear-gradient(90deg, transparent, var(--color-brass-hi), transparent);
+  box-shadow: var(--shadow-glow);
+}
+
+.lightTop {
+  left: -10%;
+  right: 35%;
+  top: 26%;
+}
+
+.lightBottom {
+  left: 25%;
+  right: -5%;
+  top: 74%;
+}
+
+.mark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+}
+
+.mark svg {
+  width: 100%;
+  height: 100%;
+  color: var(--color-text-on-dark-muted);
+  filter: drop-shadow(0 0 var(--space-md) var(--color-brass-glow));
+}
+
+/* Thinner outlines when the mark is shown large (the three empty cells). */
+.mark svg rect:not(:first-child) {
+  stroke-width: 0.6;
+}
+
+/* ---------- Footer ---------- */
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-xs);
+  width: 100%;
+  padding-top: var(--space-md);
+  padding-bottom: var(--space-md);
+  font-size: var(--text-xs);
+  color: var(--color-text-on-dark-muted);
+  border-top: var(--border) solid var(--color-line-dark);
+}
+
+/* ==========================================================================
+   Motion — headline rises, then the studio lights switch on.
+   ========================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  :global(html.js) .line > span {
+    animation: rise var(--dur-reveal) var(--ease-out) both;
+  }
+
+  :global(html.js) .accentLine > span {
+    animation-delay: 180ms;
+  }
+
+  :global(html.js) .lede,
+  :global(html.js) .status,
+  :global(html.js) .ctas,
+  :global(html.js) .facts {
+    animation: fadeUp var(--dur-slow) var(--ease-out) both;
+  }
+
+  :global(html.js) .lede {
+    animation-delay: 450ms;
+  }
+
+  :global(html.js) .status {
+    animation-delay: 560ms;
+  }
+
+  :global(html.js) .ctas {
+    animation-delay: 660ms;
+  }
+
+  :global(html.js) .facts {
+    animation-delay: 780ms;
+  }
+
+  :global(html.js) .studio {
+    animation: haze 1600ms var(--ease-out) 200ms both;
+  }
+
+  :global(html.js) .light {
+    transform-origin: left;
+    animation: lightOn 1400ms var(--ease-out) 700ms both;
+  }
+
+  :global(html.js) .lightBottom {
+    transform-origin: right;
+    animation-delay: 950ms;
+  }
+
+  :global(html.js) .mark {
+    animation: markIn 1400ms var(--ease-out) 400ms both;
+  }
+
+  /* A slow breathing pulse on the "live" dot. */
+  .dot {
+    animation: pulse 2800ms var(--ease-out) 1500ms infinite;
+  }
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(105%);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@keyframes haze {
+  from {
+    filter: brightness(0.4);
+  }
+}
+
+@keyframes lightOn {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+}
+
+@keyframes markIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, calc(-50% + 20px));
+  }
+}
+
+@keyframes pulse {
+  50% {
+    box-shadow: 0 0 0 var(--space-2xs) transparent;
+  }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    padding-top: var(--space-lg);
+  }
+
+  .studio {
+    min-height: 16rem;
+    margin: 0 calc(var(--gutter) * -1);
+  }
+
+  .mark {
+    width: 30%;
+    max-width: 10rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .topPhone span {
+    display: none;
+  }
+}

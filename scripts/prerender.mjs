@@ -175,7 +175,10 @@ const writePage = (page, outFile) => {
   return html.length;
 };
 
-for (const page of pages) {
+// Coming soon mode: only the homepage exists (plus 404.html showing the same page).
+const livePages = site.comingSoon ? pages.filter((p) => p.path === "/") : pages;
+
+for (const page of livePages) {
   const out =
     page.path === "/"
       ? path.join(dist, "index.html")
@@ -184,7 +187,7 @@ for (const page of pages) {
   const size = writePage(page, out);
   console.log(`✓ ${page.path.padEnd(12)} ${(size / 1024).toFixed(1)} kB`);
 }
-writePage(pageByPath("/404"), path.join(dist, "404.html"));
+writePage(site.comingSoon ? pageByPath("/") : pageByPath("/404"), path.join(dist, "404.html"));
 
 // ---------- robots.txt + sitemap.xml ----------
 const today = new Date().toISOString().slice(0, 10);
@@ -193,7 +196,7 @@ fs.writeFileSync(
   path.join(dist, "sitemap.xml"),
   `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${pages
+${livePages
   .map(
     (p) => `  <url>
     <loc>${urlFor(p.path)}</loc>
@@ -206,4 +209,7 @@ ${pages
 );
 
 fs.rmSync(path.join(root, "dist-ssr"), { recursive: true, force: true });
-console.log(`✓ ${pages.length} pages + 404.html, robots.txt, sitemap.xml for ${home}`);
+console.log(
+  `✓ ${livePages.length} pages + 404.html, robots.txt, sitemap.xml for ${home}` +
+    (site.comingSoon ? "  [COMING SOON — set VITE_COMING_SOON=false to launch]" : ""),
+);

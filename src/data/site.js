@@ -35,6 +35,11 @@ export const site = {
   // Områdene SEO-dataene sier at du betjener.
   areaServed: ["Oslo", "Akershus", "Østlandet", "Norge"],
 
+  // "Lanseres snart"-modus. Produksjonsbygg viser coming soon-siden, med mindre
+  // VITE_COMING_SOON=false er satt (f.eks. i Vercel). Lokalt (npm run dev) vises
+  // alltid hele siden. Lansering: sett VITE_COMING_SOON=false i Vercel og deploy.
+  comingSoon: import.meta.env.PROD && import.meta.env.VITE_COMING_SOON !== "false",
+
   // EmailJS — nøklene settes som miljøvariabler (se .env.example).
   emailjs: {
     serviceId: import.meta.env.VITE_EMAILJS_SERVICE_ID,

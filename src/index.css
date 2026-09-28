@@ -41,6 +41,7 @@
   --color-error: #f08a7e;
   --color-error-on-light: #b42318;
   --color-success: #8fd3a8;
+  --color-success-ring: rgb(143 211 168 / 0.25);
   --color-focus: #e2bf82;
 
   /* ---------- Typography: families ---------- */

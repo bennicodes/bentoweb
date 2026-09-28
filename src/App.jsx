@@ -9,9 +9,17 @@ import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import ProjectPage from "./pages/ProjectPage";
 import NotFound from "./pages/NotFound";
+import ComingSoon from "./components/ComingSoon/ComingSoon";
+import { site } from "./data/site";
 
 // Paths must match src/data/pages.js (used for SEO + prerendering).
-const App = () => (
+const App = () =>
+  site.comingSoon ? (
+    // "Lanseres snart": every address shows the coming soon page.
+    <Routes>
+      <Route path="*" element={<ComingSoon />} />
+    </Routes>
+  ) : (
   <Routes>
     <Route element={<Layout />}>
       <Route index element={<Home />} />
@@ -24,6 +32,6 @@ const App = () => (
       <Route path="*" element={<NotFound />} />
     </Route>
   </Routes>
-);
+  );
 
 export default App;

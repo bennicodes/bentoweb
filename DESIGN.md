@@ -126,6 +126,7 @@ Square: `--radius` is 2px everywhere. Hairline borders, thin brass dashes as lis
 - **Process** — timeline whose brass line draws across when it scrolls in.
 - **Pricing** — three joined columns; the popular plan is the dark column with a lit brass edge.
 - **FAQ** — native `<details>`, plus rotates to ×.
+- **ComingSoon** — shown in production builds until `VITE_COMING_SOON=false` (see `site.comingSoon`). One viewport: headline, lede, live status dot, call button, three facts, and a studio panel where the brand mark lights up. Every route renders it; prerender writes only `/` + `404.html`.
 
 ## Motion
 
