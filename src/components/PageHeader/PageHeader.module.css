@@ -1,0 +1,121 @@
+.header {
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-3xl) 0 var(--space-2xl);
+  border-bottom: var(--border) solid var(--color-line-dark);
+  background: radial-gradient(50% 80% at 85% 0%, var(--color-brass-haze), transparent 70%);
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
+  align-items: end;
+  gap: var(--space-xl);
+}
+
+.title {
+  font-size: var(--text-3xl);
+}
+
+/* Spans the full row above the title + lede. */
+.back {
+  grid-column: 1 / -1;
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  margin-bottom: calc(var(--space-md) * -1);
+  padding: var(--space-2xs) 0;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-on-dark-muted);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.backIcon {
+  color: var(--color-brass);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .back:hover {
+    color: var(--color-text-on-dark);
+  }
+
+  .back:hover .backIcon {
+    transform: translateX(calc(var(--space-2xs) * -1));
+  }
+}
+
+.line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.line > span {
+  display: inline-block;
+}
+
+.lede {
+  font-size: var(--text-lg);
+  color: var(--color-text-on-dark-muted);
+}
+
+/* Brass backlight line along the bottom edge. */
+.light {
+  position: absolute;
+  left: 30%;
+  right: -10%;
+  bottom: calc(var(--border) * -1);
+  height: var(--border);
+  background: linear-gradient(90deg, transparent, var(--color-brass-hi), transparent);
+  box-shadow: var(--shadow-glow);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :global(html.js) .line > span {
+    animation: rise var(--dur-reveal) var(--ease-out) both;
+  }
+
+  :global(html.js) .lineAccent > span {
+    animation-delay: 150ms;
+  }
+
+  :global(html.js) .lede {
+    animation: fadeUp var(--dur-slow) var(--ease-out) 350ms both;
+  }
+
+  :global(html.js) .light {
+    transform-origin: right;
+    animation: lightOn 1400ms var(--ease-out) 500ms both;
+  }
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(105%);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+@keyframes lightOn {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+}

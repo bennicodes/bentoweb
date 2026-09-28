@@ -1,0 +1,139 @@
+.hero {
+  border-bottom: var(--border) solid var(--color-line-dark);
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  align-items: stretch;
+  gap: var(--space-2xl);
+  max-width: var(--container);
+  min-height: calc(100svh - var(--nav-height));
+  margin: 0 auto;
+  padding: var(--space-2xl) var(--gutter) 0;
+}
+
+.copy {
+  align-self: center;
+  padding-bottom: var(--space-2xl);
+}
+
+.title {
+  margin-bottom: var(--space-lg);
+  font-size: var(--text-display);
+}
+
+/* Each part of the headline rises out of its own mask. */
+.line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.line > span {
+  display: inline-block;
+  text-wrap: balance;
+}
+
+.lede {
+  max-width: 34rem;
+  margin-bottom: var(--space-xl);
+  font-size: var(--text-lg);
+  color: var(--color-text-on-dark-muted);
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.proof {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md) var(--space-xl);
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-lg);
+  border-top: var(--border) solid var(--color-line-dark);
+}
+
+.proof div {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.proof dt {
+  font-size: var(--text-xs);
+  color: var(--color-text-on-dark-muted);
+}
+
+.proof dd {
+  font-family: var(--font-display);
+  font-size: var(--text-stat);
+  line-height: var(--leading-snug);
+}
+
+.portrait {
+  min-height: 34rem;
+}
+
+/* ---------- Load choreography ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  :global(html.js) .line > span {
+    animation: rise var(--dur-reveal) var(--ease-out) both;
+  }
+
+  :global(html.js) .lineAccent > span {
+    animation-delay: 180ms;
+  }
+
+  :global(html.js) .lede,
+  :global(html.js) .ctas,
+  :global(html.js) .proof {
+    animation: fadeUp var(--dur-slow) var(--ease-out) both;
+  }
+
+  :global(html.js) .lede {
+    animation-delay: 450ms;
+  }
+
+  :global(html.js) .ctas {
+    animation-delay: 580ms;
+  }
+
+  :global(html.js) .proof {
+    animation-delay: 720ms;
+  }
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(105%);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+@media (max-width: 960px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 0;
+    min-height: 0;
+    padding-top: var(--space-xl);
+  }
+
+  .copy {
+    padding-bottom: var(--space-xl);
+  }
+
+  .portrait {
+    min-height: 26rem;
+    margin: 0 calc(var(--gutter) * -1);
+  }
+}

@@ -1,39 +1,323 @@
-* {
+/* ==========================================================================
+   BentoWeb — design tokens ("Nattblå og messing")
+   Every color, size, space, radius, shadow and timing lives here.
+   Component CSS modules only reference these variables.
+   ========================================================================== */
+
+:root {
+  /* ---------- Color: dark (nattblå) ---------- */
+  --color-night: #0a1020;
+  --color-navy: #0f1830;
+  --color-navy-2: #16213d;
+  --color-navy-3: #142039;
+  --color-line-dark: #243150;
+
+  /* ---------- Color: light (stein) ---------- */
+  --color-stone: #ece7dd;
+  --color-stone-2: #e2dccf;
+  --color-line-light: #cfc8b9;
+
+  /* ---------- Color: text ---------- */
+  --color-text-on-dark: #ece7dd;
+  --color-text-on-dark-muted: #a7b0c2;
+  --color-text-on-light: #0e1526;
+  --color-text-on-light-muted: #4a5163;
+
+  /* ---------- Color: brass accent ---------- */
+  --color-brass: #c9a063;
+  --color-brass-hi: #e2bf82;
+  /* Brass dark enough to carry small text on stone (≈4.6:1). */
+  --color-brass-text: #7d5f2e;
+  --color-brass-glow: rgb(201 160 99 / 0.35);
+  --color-brass-haze: rgb(201 160 99 / 0.22);
+  --color-brass-ring: rgb(201 160 99 / 0.12);
+  --color-nav-bg: rgb(10 16 32 / 0.94);
+  --color-scrim: rgb(10 16 32 / 0.72);
+  --color-hatch: rgb(255 255 255 / 0.02);
+  /* Mask alpha, not a visible colour: "fully shown" in CSS mask gradients. */
+  --mask-solid: #000;
+
+  /* ---------- Color: states ---------- */
+  --color-error: #f08a7e;
+  --color-error-on-light: #b42318;
+  --color-success: #8fd3a8;
+  --color-focus: #e2bf82;
+
+  /* ---------- Typography: families ---------- */
+  --font-display: "Gloock", Georgia, "Times New Roman", serif;
+  --font-body: "Schibsted Grotesk Variable", "Schibsted Grotesk", system-ui,
+    -apple-system, "Segoe UI", sans-serif;
+
+  /* ---------- Typography: sizes (fluid) ---------- */
+  --text-2xs: 0.75rem;
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-base: 1.0625rem;
+  --text-lg: clamp(1.125rem, 1rem + 0.5vw, 1.25rem);
+  --text-xl: clamp(1.35rem, 1.15rem + 0.8vw, 1.75rem);
+  --text-2xl: clamp(1.6rem, 1.2rem + 1.2vw, 2.25rem);
+  --text-3xl: clamp(2.4rem, 1.4rem + 3vw, 4.2rem);
+  --text-display: clamp(3rem, 1.4rem + 5vw, 5.6rem);
+  --text-stat: clamp(1.5rem, 1.2rem + 1vw, 1.9rem);
+  --text-price: clamp(2.6rem, 2.2rem + 1.4vw, 3.2rem);
+
+  /* ---------- Typography: weights, leading, tracking ---------- */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --leading-tight: 1.02;
+  --leading-snug: 1.2;
+  --leading-body: 1.6;
+  --tracking-display: -0.02em;
+  --tracking-button: 0.02em;
+  --tracking-caps: 0.14em;
+  --measure: 62ch;
+
+  /* ---------- Spacing ---------- */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4.5rem;
+  --space-3xl: clamp(5rem, 3rem + 7vw, 8.5rem);
+  --gutter: clamp(1.25rem, 0.5rem + 3vw, 3rem);
+  --container: 76rem;
+  /* Below this the layout stops shrinking and the page scrolls sideways instead. */
+  --page-min-width: 320px;
+  --nav-height: 4.5rem;
+  --control-height: 3.4rem;
+  --control-height-sm: 2.6rem;
+
+  /* ---------- Shape & depth ---------- */
+  --radius: 2px;
+  --border: 1px;
+  --accent-bar: 2px;
+  --shadow-glow: 0 0 22px 2px var(--color-brass-glow);
+  --shadow-button-hover: 0 0 0 6px var(--color-brass-ring),
+    0 10px 40px -8px var(--color-brass-glow);
+
+  /* ---------- Motion ---------- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 200ms;
+  --dur-base: 400ms;
+  --dur-slow: 900ms;
+  --dur-reveal: 1100ms;
+  --stagger: 90ms;
+
+  /* ---------- Layers ---------- */
+  --z-nav: 100;
+  --z-menu: 200;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-:root {
-  /* Brand Colors */
-  --bw-dark-blue: #2d3e50;
-  --bw-turquoise: #38bdf8;
-  --bw-turquoise-soft: rgba(56, 189, 248, 0.1);
-
-  /* Backgrounds */
-  --bw-bg-light: #fafafa;
-  --bw-bg-gradient: radial-gradient(
-    circle at top right,
-    #fafafa 0%,
-    #fafafa 40%,
-    #e6f7ff 100%
-  );
-
-  /* Typography */
-  --bw-text-main: #2d3e50;
-  --bw-text-muted: #64748b;
-  --bw-font-family: "Inter", system-ui, -apple-system, sans-serif;
-
-  /* Spacing & Transitions */
-  --bw-transition: all 0.3s ease;
-  --bw-radius: 100px;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-height) + var(--space-sm));
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  width: 100%;
+  min-width: var(--page-min-width);
   min-height: 100vh;
-  font-family: var(--bw-font-family);
-  background-color: var(--bw-bg-light);
-  color: var(--bw-text-main);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  color: var(--color-text-on-dark);
+  background-color: var(--color-night);
   -webkit-font-smoothing: antialiased;
+  /* clip (not hidden) so body never becomes a scroll container — keeps the sticky navbar working. */
+  overflow-x: clip;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-display);
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--color-brass);
+  color: var(--color-night);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--space-sm);
+  top: -100px;
+  z-index: var(--z-menu);
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--color-brass);
+  color: var(--color-night);
+  font-weight: var(--weight-semibold);
+}
+
+.skip-link:focus {
+  top: var(--space-sm);
+}
+
+/* ==========================================================================
+   Section scaffolding
+   ========================================================================== */
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.section {
+  padding: var(--space-3xl) 0;
+}
+
+/* Light "stone" sections alternate with the dark ground. */
+.section--light {
+  background-color: var(--color-stone);
+  color: var(--color-text-on-light);
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  gap: var(--space-xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.section-title {
+  font-size: var(--text-3xl);
+}
+
+.section-lede {
+  justify-self: end;
+  max-width: 28rem;
+  color: var(--color-text-on-dark-muted);
+}
+
+.section--light .section-lede {
+  color: var(--color-text-on-light-muted);
+}
+
+.accent {
+  color: var(--color-brass);
+}
+
+@media (max-width: 900px) {
+  .section-head {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xl);
+  }
+
+  .section-lede {
+    justify-self: start;
+  }
+}
+
+/* ==========================================================================
+   Motion — calm, confident reveals.
+   Content is visible by default; start states only apply once JS has booted
+   (html.js) and the visitor hasn't asked for reduced motion.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+  html.js [data-reveal][data-inview="false"] {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  html.js [data-reveal][data-inview="true"] {
+    transition:
+      opacity var(--dur-slow) var(--ease-out) var(--reveal-delay, 0ms),
+      transform var(--dur-slow) var(--ease-out) var(--reveal-delay, 0ms);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ==========================================================================
+   Page transitions (router links use the View Transitions API).
+   A short cross-fade with a slight lift; the sticky header stays put.
+   ========================================================================== */
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) {
+    animation: page-out var(--dur-fast) var(--ease-in-out) both;
+  }
+
+  ::view-transition-new(root) {
+    animation: page-in var(--dur-base) var(--ease-out) both;
+  }
+}
+
+@keyframes page-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
 }

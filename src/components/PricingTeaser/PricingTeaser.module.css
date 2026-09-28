@@ -1,0 +1,104 @@
+.list {
+  list-style: none;
+  border-top: var(--border) solid var(--color-line-light);
+}
+
+.item {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) auto 2rem;
+  align-items: baseline;
+  gap: var(--space-lg);
+  padding: var(--space-lg) 0;
+  border-bottom: var(--border) solid var(--color-line-light);
+}
+
+.item::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--border) * -1);
+  height: var(--border);
+  background: var(--color-brass-text);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  line-height: var(--leading-snug);
+}
+
+.name em {
+  display: block;
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--color-brass-text);
+}
+
+.tagline {
+  font-size: var(--text-sm);
+  color: var(--color-text-on-light-muted);
+}
+
+.price {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  white-space: nowrap;
+}
+
+.price small {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--color-text-on-light-muted);
+}
+
+.oldPrice {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  text-align: right;
+  color: var(--color-text-on-light-muted);
+}
+
+.go {
+  align-self: center;
+  justify-self: end;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+@media (hover: hover) {
+  .item:hover::after {
+    transform: scaleX(1);
+  }
+
+  .item:hover .go {
+    transform: translateX(var(--space-2xs));
+  }
+}
+
+.more {
+  margin-top: var(--space-xl);
+}
+
+@media (max-width: 900px) {
+  .item {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-2xs) var(--space-md);
+  }
+
+  .tagline {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .go {
+    display: none;
+  }
+}

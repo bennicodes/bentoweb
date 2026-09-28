@@ -1,0 +1,203 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-nav);
+  border-bottom: var(--border) solid transparent;
+  transition: border-color var(--dur-base) var(--ease-out);
+}
+
+/* The frosted background lives on a pseudo-element: backdrop-filter on the
+   header itself would make it the containing block for the fixed mobile
+   menu, trapping the menu inside the 72px bar. */
+.navbar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--color-nav-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.scrolled {
+  border-bottom-color: var(--color-line-dark);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  max-width: var(--container);
+  height: var(--nav-height);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.links {
+  display: flex;
+  gap: var(--space-lg);
+  list-style: none;
+}
+
+.link {
+  position: relative;
+  padding: var(--space-2xs) 0;
+  font-size: var(--text-sm);
+  color: var(--color-text-on-dark-muted);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+/* A thin brass line slides in under the hovered link. */
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--border);
+  background: var(--color-brass);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.link:hover,
+.link:focus-visible,
+.active {
+  color: var(--color-text-on-dark);
+}
+
+.link:hover::after,
+.link:focus-visible::after,
+.active::after {
+  transform: scaleX(1);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--control-height-sm);
+  height: var(--control-height-sm);
+  background: transparent;
+  border: var(--border) solid var(--color-line-dark);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+/* ---------- Mobile sheet ---------- */
+.sheet {
+  position: fixed;
+  inset: var(--nav-height) 0 0 0;
+  z-index: var(--z-menu);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  padding: var(--space-xl) var(--gutter);
+  background-color: var(--color-night);
+  min-width: var(--page-min-width);
+  border-top: var(--border) solid var(--color-line-dark);
+  overflow-y: auto;
+}
+
+.sheet[hidden],
+.scrim[hidden] {
+  display: none;
+}
+
+/* Dims the page behind the tablet side panel; click closes the menu. */
+.scrim {
+  position: fixed;
+  inset: var(--nav-height) 0 0 0;
+  z-index: var(--z-menu);
+  background-color: var(--color-scrim);
+  border: 0;
+  cursor: pointer;
+}
+
+.sheetLinks {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.sheetLinks a[aria-current="page"] {
+  color: var(--color-brass);
+}
+
+.sheetLinks a {
+  display: block;
+  padding: var(--space-xs) 0;
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  border-bottom: var(--border) solid var(--color-line-dark);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sheetOpen .sheetLinks li {
+    animation: rise var(--dur-slow) var(--ease-out) both;
+    animation-delay: calc(var(--i) * 50ms);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+@media (max-width: 960px) {
+  .links {
+    display: none;
+  }
+
+  .toggle {
+    display: inline-flex;
+  }
+}
+
+/* Tablet: the menu slides in as a side panel over part of the screen. */
+@media (min-width: 600px) and (max-width: 960px) {
+  .sheet {
+    left: auto;
+    width: min(26rem, 62vw);
+    border-left: var(--border) solid var(--color-line-dark);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sheetOpen {
+    animation: sheetIn var(--dur-base) var(--ease-out);
+  }
+
+  .scrim:not([hidden]) {
+    animation: fade var(--dur-base) var(--ease-out);
+  }
+}
+
+@keyframes sheetIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 519px) {
+  .actions .cta {
+    display: none;
+  }
+}

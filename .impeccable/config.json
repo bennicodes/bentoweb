@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-08-02T23:18:28.503Z",
+        "reason": "User confirmed Inter is intentional for UI/body text; Schibsted Grotesk carries display/headline personality"
+      }
+    ]
+  }
+}

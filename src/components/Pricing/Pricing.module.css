@@ -1,0 +1,181 @@
+.plans {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border: var(--border) solid var(--color-line-light);
+}
+
+.plan {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-xl) var(--space-lg) var(--space-lg);
+  border-right: var(--border) solid var(--color-line-light);
+}
+
+.plan:last-child {
+  border-right: 0;
+}
+
+.popular {
+  margin: calc(var(--border) * -1);
+  color: var(--color-text-on-dark);
+  background-color: var(--color-night);
+}
+
+/* Lit brass edge on the recommended plan. */
+.popular::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--accent-bar);
+  background: var(--color-brass);
+  box-shadow: var(--shadow-glow);
+}
+
+.badge {
+  min-height: 1.4em;
+  margin-bottom: var(--space-sm);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--color-brass);
+}
+
+.name {
+  margin-bottom: var(--space-2xs);
+  font-size: var(--text-2xl);
+}
+
+.tagline {
+  min-height: 3.2em;
+  font-size: var(--text-sm);
+  color: var(--color-text-on-light-muted);
+}
+
+.priceBlock {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-3xs) var(--space-2xs);
+  margin: var(--space-lg) 0 var(--space-3xs);
+}
+
+.priceLabel,
+.priceSuffix,
+.oldPrice {
+  font-size: var(--text-xs);
+  color: var(--color-text-on-light-muted);
+}
+
+.price {
+  font-family: var(--font-display);
+  font-size: var(--text-price);
+  line-height: 1;
+  letter-spacing: var(--tracking-display);
+}
+
+.maintenance {
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-md);
+  font-size: var(--text-xs);
+  color: var(--color-text-on-light-muted);
+  border-bottom: var(--border) solid var(--color-line-light);
+}
+
+.popular .tagline,
+.popular .priceLabel,
+.popular .priceSuffix,
+.popular .oldPrice,
+.popular .maintenance {
+  color: var(--color-text-on-dark-muted);
+}
+
+.popular .maintenance {
+  border-color: var(--color-line-dark);
+}
+
+.features {
+  list-style: none;
+  display: grid;
+  gap: var(--space-xs);
+  flex: 1;
+  margin-bottom: var(--space-xl);
+  font-size: var(--text-sm);
+}
+
+.features li {
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.features li::before {
+  content: "";
+  flex: 0 0 14px;
+  height: var(--border);
+  margin-top: 0.8em;
+  background: var(--color-brass);
+}
+
+.saleLabel {
+  margin-bottom: var(--space-2xs);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--color-brass-text);
+}
+
+.popular .saleLabel {
+  color: var(--color-brass);
+}
+
+.oldPrice {
+  text-decoration-thickness: 1px;
+}
+
+/* Launch-offer banner above the plans. */
+.launchNote {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-lg);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--text-sm);
+  border: var(--border) solid var(--color-line-light);
+}
+
+.launchNote strong {
+  flex-shrink: 0;
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--color-brass-text);
+}
+
+.footnote {
+  margin-top: var(--space-lg);
+  font-size: var(--text-sm);
+  color: var(--color-text-on-light-muted);
+}
+
+@media (max-width: 960px) {
+  .plans {
+    grid-template-columns: 1fr;
+  }
+
+  .plan {
+    border-right: 0;
+    border-bottom: var(--border) solid var(--color-line-light);
+  }
+
+  .plan:last-child {
+    border-bottom: 0;
+  }
+
+  .tagline {
+    min-height: 0;
+  }
+}

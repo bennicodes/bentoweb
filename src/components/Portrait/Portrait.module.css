@@ -1,0 +1,160 @@
+.frame {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(60% 55% at 78% 38%, var(--color-brass-haze), transparent 70%),
+    linear-gradient(180deg, var(--color-navy), var(--color-night) 92%);
+}
+
+.photo {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+/* Backlit "shelf" lines — the brass light of the brand. */
+.light {
+  position: absolute;
+  z-index: 0;
+  height: var(--border);
+  background: linear-gradient(90deg, transparent, var(--color-brass-hi), transparent);
+  box-shadow: var(--shadow-glow);
+  pointer-events: none;
+}
+
+.lightTop {
+  left: -10%;
+  right: 40%;
+  top: 30%;
+}
+
+.lightBottom {
+  left: 20%;
+  right: -5%;
+  top: 64%;
+}
+
+.silhouette {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  bottom: 0;
+  width: 78%;
+  transform: translateX(-50%);
+}
+
+.body {
+  fill: var(--color-navy-3);
+}
+
+.rim {
+  fill: none;
+  stroke: url(#portrett-rim);
+  stroke-width: 3;
+}
+
+.pending {
+  position: absolute;
+  left: var(--space-md);
+  bottom: var(--space-md);
+  z-index: 2;
+  padding: var(--space-2xs) var(--space-xs);
+  font-size: var(--text-2xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--color-brass);
+  background: var(--color-scrim);
+  border: var(--border) dashed var(--color-brass-glow);
+}
+
+.pending small {
+  display: block;
+  margin-top: var(--space-3xs);
+  font-size: var(--text-2xs);
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--color-text-on-dark-muted);
+}
+
+.name {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  z-index: 2;
+  font-size: var(--text-xs);
+  text-align: right;
+  color: var(--color-text-on-dark-muted);
+}
+
+.name strong {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: var(--weight-regular);
+  font-size: var(--text-lg);
+  color: var(--color-text-on-dark);
+}
+
+/* ---------- Intro: the studio lights switch on (hero only) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  :global(html.js) .intro {
+    animation: haze 1600ms var(--ease-out) 200ms both;
+  }
+
+  :global(html.js) .intro .light {
+    transform-origin: left;
+    animation: lightOn 1400ms var(--ease-out) both;
+  }
+
+  :global(html.js) .intro .lightTop {
+    animation-delay: 700ms;
+  }
+
+  :global(html.js) .intro .lightBottom {
+    transform-origin: right;
+    animation-delay: 950ms;
+  }
+
+  :global(html.js) .intro .silhouette {
+    animation: emerge 1400ms var(--ease-out) 400ms both;
+  }
+
+  :global(html.js) .intro .photo {
+    animation: fade 1400ms var(--ease-out) 400ms both;
+  }
+
+  :global(html.js) .intro .rim,
+  :global(html.js) .intro .name,
+  :global(html.js) .intro .pending {
+    animation: fade 1200ms var(--ease-out) 1300ms both;
+  }
+}
+
+@keyframes haze {
+  from {
+    filter: brightness(0.4);
+  }
+}
+
+@keyframes lightOn {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+}
+
+@keyframes emerge {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 24px);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}

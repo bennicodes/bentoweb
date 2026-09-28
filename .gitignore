@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 
+# Environment files — never commit real keys (only the template)
+.env
+.env.*
+!.env.example
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -22,3 +27,19 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Graphify local output & cache
+graphify-out/
+.graphify_cache/
+.graphify_version
+
+# impeccable-ignore-start
+.impeccable/config.local.json
+.impeccable/hook.cache.json
+.impeccable/hook.pending.json
+.impeccable/*.png
+.impeccable/live/
+.impeccable/ref/
+.impeccable/arkiv/
+.impeccable/questions/
+# impeccable-ignore-end

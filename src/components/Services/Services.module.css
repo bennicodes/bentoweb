@@ -1,0 +1,146 @@
+.rows {
+  list-style: none;
+  border-top: var(--border) solid var(--color-line-light);
+}
+
+.row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 5rem minmax(0, 1fr) minmax(0, 1.2fr) 3rem;
+  align-items: baseline;
+  gap: var(--space-lg);
+  padding: var(--space-lg) 0;
+  border-bottom: var(--border) solid var(--color-line-light);
+}
+
+/* A brass rule grows along the bottom of the hovered row. */
+.row::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--border) * -1);
+  height: var(--border);
+  background: var(--color-brass-text);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.n {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--color-brass-text);
+}
+
+.title {
+  font-size: var(--text-2xl);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.text {
+  color: var(--color-text-on-light-muted);
+}
+
+.points {
+  list-style: none;
+  display: grid;
+  gap: var(--space-2xs);
+  margin-top: var(--space-md);
+  font-size: var(--text-sm);
+}
+
+.points li {
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.points li::before {
+  content: "";
+  flex: 0 0 14px;
+  height: var(--border);
+  margin-top: 0.8em;
+  background: var(--color-brass-text);
+}
+
+.plan {
+  margin-top: var(--space-md);
+  font-size: var(--text-sm);
+  color: var(--color-text-on-light-muted);
+}
+
+.plan strong {
+  color: var(--color-text-on-light);
+  font-weight: var(--weight-semibold);
+}
+
+.rowFull {
+  padding: var(--space-xl) 0;
+}
+
+.more {
+  margin-top: var(--space-xl);
+}
+
+.go {
+  justify-self: end;
+  align-self: center;
+  color: var(--color-text-on-light);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+/* Whole row is the hit area. */
+.go::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+@media (hover: hover) {
+  .row:hover::after {
+    transform: scaleX(1);
+  }
+
+  .row:hover .title {
+    transform: translateX(var(--space-2xs));
+  }
+
+  .row:hover .go {
+    transform: translateX(var(--space-2xs));
+  }
+}
+
+.always {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-xl);
+  margin-top: var(--space-xl);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+}
+
+.always li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+}
+
+.check {
+  color: var(--color-brass-text);
+}
+
+@media (max-width: 900px) {
+  .row {
+    grid-template-columns: 3rem minmax(0, 1fr);
+    gap: var(--space-2xs) var(--space-sm);
+  }
+
+  .body {
+    grid-column: 2;
+  }
+
+  .go {
+    display: none;
+  }
+}
