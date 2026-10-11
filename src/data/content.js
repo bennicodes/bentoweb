@@ -54,12 +54,12 @@ export const situations = [
     icon: "bag",
     color: "white",
     title: "Trenger nettbutikk",
-    text: "Selg varene dine på nett med en butikk som er enkel å drifte — med betaling og integrasjoner når du trenger det.",
+    text: "Selg varene dine på nett med en butikk som er enkel å bruke — med betaling og integrasjoner når du trenger det.",
     plan: "Nettbutikk",
     points: [
       "Opptil 100 produkter",
       "Betaling med kort og Vipps",
-      "Opplæring så du kan drifte butikken selv",
+      "Fraktvalg og lagerstyring",
     ],
   },
 ];
@@ -113,7 +113,7 @@ export const faq = [
   },
   {
     q: "Kan dere lage nettbutikk?",
-    a: "Ja. Nettbutikk-pakken gir deg opptil 100 produkter med kort- og Vipps-betaling, frakt og opplæring. Trenger du mer, får du et fast tilbud.",
+    a: "Ja. Nettbutikk-pakken gir deg opptil 100 produkter med kort- og Vipps-betaling og frakt. Trenger du mer, får du et fast tilbud.",
   },
   {
     q: "Jobber dere bare med bedrifter i Oslo?",

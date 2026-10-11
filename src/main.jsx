@@ -15,6 +15,7 @@ const app = (
 );
 
 // In production every page is prerendered (see scripts/prerender.mjs), so we
+
 // hydrate it. In dev the root is empty and we render from scratch.
 if (root.firstElementChild) {
   hydrateRoot(root, app);

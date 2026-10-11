@@ -7,6 +7,27 @@
   gap: var(--space-xl) var(--space-md);
 }
 
+.demos {
+  margin-top: var(--space-3xl);
+  padding-top: var(--space-2xl);
+  border-top: var(--border) solid var(--color-line-dark);
+}
+
+/* "Eksempel · Pakke" label on example-site cards. */
+.demoBadge {
+  position: absolute;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  z-index: 1;
+  padding: var(--space-3xs) var(--space-xs);
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-button);
+  color: var(--color-night);
+  background-color: var(--color-brass);
+  border-radius: var(--radius);
+}
+
 .more {
   margin-top: var(--space-xl);
 }
@@ -115,7 +136,7 @@
   /* Stops for reading: on hover, keyboard focus, or the pause button. */
   .marquee:hover .track,
   .marquee:focus-within .track,
-  .marquee[data-paused] .track {
+  [data-paused] .marquee .track {
     animation-play-state: paused;
   }
 }

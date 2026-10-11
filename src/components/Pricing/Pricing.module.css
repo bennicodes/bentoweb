@@ -155,6 +155,19 @@
   color: var(--color-brass-text);
 }
 
+/* "Alt i … og i tillegg:" — a lead-in, not a bullet. */
+.features li.includes {
+  font-weight: var(--weight-semibold);
+}
+
+.features li.includes::before {
+  content: none;
+}
+
+.example {
+  margin: calc(var(--space-md) * -1) 0 var(--space-md);
+}
+
 .footnote {
   margin-top: var(--space-lg);
   font-size: var(--text-sm);

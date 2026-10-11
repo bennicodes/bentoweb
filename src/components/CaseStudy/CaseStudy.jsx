@@ -4,6 +4,7 @@ import styles from "./CaseStudy.module.css";
 import Icon from "../Icon/Icon";
 import MoreLink from "../MoreLink/MoreLink";
 import { projects } from "../../data/projects";
+import { planById } from "../../data/pricingPlans";
 
 // The body of a /prosjekter/<id> page. Optional story fields only render
 // when they're filled in, so a project never shows empty headings.
@@ -17,10 +18,19 @@ const CaseStudy = ({ project }) => {
   ].filter(([, text]) => text);
   const desktopShots = (project.gallery ?? []).filter((g) => g.kind !== "mobile");
   const mobileShots = (project.gallery ?? []).filter((g) => g.kind === "mobile");
+  const plan = project.plan ? planById(project.plan) : null;
 
   return (
     <section className="section" aria-label={`Om prosjektet ${project.name}`}>
       <div className="container">
+        {project.demo && (
+          <p className={styles.demoNote} data-reveal>
+            <strong>Eksempel</strong>
+            Dette er en fiktiv bedrift, laget for å vise hva du får med pakken
+            {plan ? ` ${plan.name}` : ""}. Navn, priser og kontaktinfo er oppdiktet.
+          </p>
+        )}
+
         {/* ---------- Main shot + facts ---------- */}
         <div className={styles.overview}>
           <figure className={styles.mainShot} data-reveal>
@@ -42,6 +52,12 @@ const CaseStudy = ({ project }) => {
                   <dd>{project.industry}</dd>
                 </div>
               )}
+              {plan && (
+                <div>
+                  <dt>Pakke</dt>
+                  <dd>{plan.name}</dd>
+                </div>
+              )}
               {project.location && (
                 <div>
                   <dt>Sted</dt>
@@ -52,7 +68,7 @@ const CaseStudy = ({ project }) => {
 
             {project.delivered?.length > 0 && (
               <>
-                <h2 className={styles.factsTitle}>Hva vi leverte</h2>
+                <h2 className={styles.factsTitle}>{project.demo ? "Hva som er med" : "Hva vi leverte"}</h2>
                 <ul className={styles.delivered}>
                   {project.delivered.map((item) => (
                     <li key={item}>{item}</li>
@@ -68,7 +84,7 @@ const CaseStudy = ({ project }) => {
                 rel="noopener noreferrer"
                 className={styles.visit}
               >
-                Besøk nettsiden
+                {project.demo ? "Se eksempelsiden" : "Besøk nettsiden"}
                 <Icon name="arrowRight" size={18} />
                 <span className="visually-hidden"> (åpnes i ny fane)</span>
               </a>

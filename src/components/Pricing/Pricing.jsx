@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./Pricing.module.css";
 import Button from "../Button/Button";
+import MoreLink from "../MoreLink/MoreLink";
+import { demoForPlan } from "../../data/projects";
 import { pricingPlans, pricingSectionContent, hasLaunchPrice } from "../../data/pricingPlans";
 
 const formatPrice = (value) => value.toLocaleString("nb-NO");
@@ -42,9 +44,20 @@ const PricingCard = ({ plan, index }) => {
 
       <ul className={styles.features}>
         {plan.features.map((feature) => (
-          <li key={feature}>{feature}</li>
+          // A line ending in ":" introduces the list (e.g. "Alt i Standard + SEO, og i tillegg:").
+          <li key={feature} className={feature.endsWith(":") ? styles.includes : undefined}>
+            {feature}
+          </li>
         ))}
       </ul>
+
+      {demoForPlan(plan.id) && (
+        <p className={styles.example}>
+          <MoreLink to={`/prosjekter/${demoForPlan(plan.id).id}`} tone={plan.isPopular ? "dark" : "light"}>
+            Se eksempel: {demoForPlan(plan.id).name}
+          </MoreLink>
+        </p>
+      )}
 
       <Button
         href={`${plan.ctaLink}?pakke=${encodeURIComponent(plan.name)}`}

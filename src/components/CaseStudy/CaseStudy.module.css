@@ -1,3 +1,25 @@
+/* ---------- Example-site notice ---------- */
+.demoNote {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2xs) var(--space-sm);
+  margin-bottom: var(--space-xl);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--text-sm);
+  color: var(--color-text-on-dark-muted);
+  border: var(--border) solid var(--color-line-dark);
+}
+
+.demoNote strong {
+  padding: var(--space-3xs) var(--space-xs);
+  font-size: var(--text-2xs);
+  font-weight: var(--weight-semibold);
+  color: var(--color-night);
+  background-color: var(--color-brass);
+  border-radius: var(--radius);
+}
+
 /* ---------- Main shot + facts ---------- */
 .overview {
   display: grid;
